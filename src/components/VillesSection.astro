@@ -1,0 +1,65 @@
+---
+const villes = [
+  {
+    name: 'Montpellier',
+    biens: '850+ biens',
+    desc: 'Capitale du Languedoc — marché dynamique, forte demande étudiante et jeune actif.',
+    href: '/montpellier',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+  },
+  {
+    name: 'Nîmes',
+    biens: '320+ biens',
+    desc: 'Ville du Gard en plein essor — prix accessibles, qualité de vie et patrimoine exceptionnel.',
+    href: '/nimes',
+    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80',
+  },
+  {
+    name: 'Sète',
+    biens: '180+ biens',
+    desc: "L'île singulière de la Méditerranée — investissement balnéaire et résidences secondaires.",
+    href: '/sete',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+  },
+];
+---
+
+<section class="section-py bg-white">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-12 fade-up">
+      <span class="section-label">Nos secteurs</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-1 mb-3" style="color: #0a0f1e;">
+        3 villes, <span class="gradient-text">une expertise locale</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">
+        Notre connaissance terrain de Montpellier, Nîmes et Sète fait la différence dans chaque transaction.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {villes.map((v, i) => (
+        <a
+          href={v.href}
+          class={`ville-card fade-up delay-${i + 1} block`}
+        >
+          <img src={v.image} alt={`Immobilier ${v.name}`} loading="lazy" />
+          <div class="ville-overlay"></div>
+
+          <!-- Content overlay -->
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="flex items-end justify-between">
+              <div>
+                <h3 class="text-2xl font-extrabold text-white mb-1">{v.name}</h3>
+                <p class="text-sm text-white/80 max-w-[220px] leading-snug">{v.desc}</p>
+              </div>
+              <span class="badge badge-cyan flex-shrink-0">{v.biens}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

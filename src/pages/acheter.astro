@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const biens = [
+  {
+    id: 'appartements',
+    title: 'Appartements',
+    desc: "Du studio étudiant au grand T4 familial, nous référençons des centaines d'appartements dans toutes les gammes de prix à Montpellier, Nîmes et Sète.",
+    icon: '🏢',
+    count: '420+',
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
+  },
+  {
+    id: 'maisons',
+    title: 'Maisons & Villas',
+    desc: "Maisons de ville, villas avec piscine, mas provençaux… Notre réseau de vendeurs exclusifs vous offre accès à des biens souvent off-market.",
+    icon: '🏠',
+    count: '210+',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+  },
+  {
+    id: 'terrains',
+    title: 'Terrains à bâtir',
+    desc: "Terrains constructibles viabilisés, en lotissement ou diffus. Nos spécialistes analysent le PLU et vous conseillent sur le potentiel constructif.",
+    icon: '🌿',
+    count: '85+',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80',
+  },
+  {
+    id: 'neufs',
+    title: 'Programmes neufs',
+    desc: "Partenaires officiels des principaux promoteurs régionaux. Accès prioritaire aux nouvelles résidences avec dispositifs Pinel et PTZ.",
+    icon: '✨',
+    count: '12 programmes',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+  },
+];
+
+const etapes = [
+  { num: '01', title: 'Définir votre projet', desc: 'Budget, superficie, quartier, type de bien. Nous cadrons ensemble vos besoins réels.' },
+  { num: '02', title: 'Sélection ciblée', desc: "Nos agents sélectionnent les biens correspondants, y compris les offres off-market non publiées." },
+  { num: '03', title: 'Visites accompagnées', desc: "Nous visitons avec vous et soulevons les points techniques à vérifier avant toute offre." },
+  { num: '04', title: 'Offre & négociation', desc: "Nous rédigeons l'offre et négocions le prix avec le vendeur pour vous obtenir les meilleures conditions." },
+  { num: '05', title: 'Compromis notarié', desc: "Nous coordonnons avec le notaire, vérifions les clauses suspensives et vous accompagnons à la signature." },
+  { num: '06', title: 'Remise des clés', desc: "Chez le notaire, en présence de votre agent Nexus jusqu'à la remise officielle des clés." },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Achat immobilier — Nexus Immobilier",
+  "provider": { "@type": "RealEstateAgent", "name": "Nexus Immobilier" },
+  "areaServed": ["Montpellier", "Nîmes", "Sète"],
+  "description": "Accompagnement à l'achat immobilier à Montpellier, Nîmes et Sète. Appartements, maisons, terrains, programmes neufs."
+};
+---
+
+<BaseLayout
+  title="Acheter un bien immobilier à Montpellier, Nîmes, Sète"
+  description="Trouvez l'appartement, la maison ou le terrain de vos rêves avec Nexus Immobilier. 850+ biens disponibles à Montpellier, Nîmes et Sète. Accompagnement complet."
+  schema={schema}
+>
+  <PageHero
+    label="Achat immobilier"
+    title="Trouvez le bien idéal avec nos experts locaux"
+    subtitle="850+ biens disponibles, y compris des offres exclusives off-market. Accompagnement complet de la recherche aux clés."
+    breadcrumb={[{ label: 'Acheter', href: '/acheter' }]}
+  />
+
+  <!-- Types de biens -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Notre catalogue</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Tous types de biens</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {biens.map((b, i) => (
+          <div id={b.id} class={`card-base fade-up delay-${i + 1} flex flex-col`}>
+            <img src={b.image} alt={b.title} class="w-full object-cover" style="height: 180px;" loading="lazy" />
+            <div class="p-5">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xl">{b.icon}</span>
+                <h3 class="font-bold text-gray-900">{b.title}</h3>
+              </div>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">{b.desc}</p>
+              <span class="badge badge-cyan">{b.count}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Étapes -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Notre processus</span>
+        <h2 class="text-3xl font-bold mt-1 mb-2" style="color: #0a0f1e;">De la recherche aux clés — <span class="gradient-text">6 étapes</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {etapes.map((e, i) => (
+          <div class={`fade-up delay-${(i % 3) + 1} flex gap-4`}>
+            <div class="text-2xl font-extrabold flex-shrink-0 w-10" style="color: #0066ff;">{e.num}</div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">{e.title}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{e.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Parlez-nous de votre projet d'achat"
+    subtitle="Nos agents vous recontactent sous 2h pour comprendre vos besoins et vous présenter les biens correspondants, y compris les exclusivités."
+    cta={{ label: "Démarrer ma recherche", href: "/contact" }}
+    ctaSecondary={{ label: "04 67 00 00 00", href: "tel:0467000000" }}
+  />
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout
+  title="Mentions légales — Nexus Immobilier"
+  description="Mentions légales de Nexus Immobilier. Éditeur, hébergeur, propriété intellectuelle, données personnelles et conditions d'utilisation du site."
+>
+  <PageHero
+    label="Légal"
+    title="Mentions légales"
+    subtitle="Informations légales relatives à ce site internet."
+    breadcrumb={[{ label: 'Mentions légales', href: '/mentions-legales' }]}
+  />
+
+  <section class="section-py bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="prose prose-slate max-w-none space-y-8">
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">1. Éditeur du site</h2>
+          <div class="text-gray-600 space-y-1 leading-relaxed">
+            <p><strong>Nexus Immobilier SARL</strong></p>
+            <p>Capital social : 15 000 €</p>
+            <p>SIRET : 451 234 567 00042</p>
+            <p>N° TVA intracommunautaire : FR 12 451234567</p>
+            <p>Carte professionnelle T : CPI 3401 2018 000 012 345 — Préfecture de l'Hérault</p>
+            <p>Siège social : 12 Rue de la Loge, 34000 Montpellier</p>
+            <p>Téléphone : 04 67 00 00 00</p>
+            <p>Email : contact@nexus-immobilier.fr</p>
+            <p>Directeur de la publication : Sarah Benchekroun</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">2. Hébergement</h2>
+          <div class="text-gray-600 leading-relaxed">
+            <p>Ce site est hébergé par Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis.</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">3. Propriété intellectuelle</h2>
+          <p class="text-gray-600 leading-relaxed">
+            L'ensemble des éléments constituant ce site (textes, images, logos, structure) est la propriété exclusive de Nexus Immobilier ou de ses partenaires. Toute reproduction, même partielle, est strictement interdite sans autorisation écrite préalable.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">4. Données personnelles</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Les données collectées via les formulaires de contact sont traitées par Nexus Immobilier SARL en qualité de responsable du traitement, aux fins de répondre à vos demandes immobilières. Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données, exerceable par email à : dpo@nexus-immobilier.fr.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">5. Cookies</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Ce site utilise des cookies fonctionnels nécessaires à son bon fonctionnement. Aucun cookie publicitaire tiers n'est déposé sans votre consentement explicite.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">6. Droit applicable</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Le présent site est soumis au droit français. Tout litige sera de la compétence exclusive des tribunaux du ressort de la Cour d'appel de Montpellier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

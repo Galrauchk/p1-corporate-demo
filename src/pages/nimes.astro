@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Nexus Immobilier Nîmes",
+  "telephone": "+33466000000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "5 Boulevard Gambetta",
+    "addressLocality": "Nîmes",
+    "postalCode": "30000",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 43.8368, "longitude": 4.3601 },
+  "url": "https://nexus-immobilier.fr/nimes",
+  "areaServed": "Nîmes"
+};
+
+const biens = [
+  { type: 'Appartement T2', quartier: 'Centre Amadier', prix: '158 000 €', surface: '48 m²', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80' },
+  { type: 'Villa T6', quartier: 'Proche Arènes', prix: '580 000 €', surface: '210 m²', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+  { type: 'Maison T4', quartier: 'Pissevin', prix: '245 000 €', surface: '95 m²', image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=400&q=80' },
+];
+---
+
+<BaseLayout
+  title="Agence immobilière Nîmes — Achat, Vente, Location"
+  description="Nexus Immobilier Nîmes : 320+ biens disponibles. Experts du marché nîmois. Achat, vente, location et gestion locative à Nîmes et agglomération. Estimation gratuite."
+  schema={schema}
+>
+  <PageHero
+    label="Nîmes · 30000"
+    title="Agence immobilière Nîmes — Nexus Immobilier"
+    subtitle="Experts du marché du Gard depuis 2014. 320+ biens disponibles à Nîmes et sa région. Des prix accessibles, une vie de qualité."
+    breadcrumb={[{ label: 'Nîmes', href: '/nimes' }]}
+    image="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1400&q=80"
+  />
+
+  <!-- Marché Nîmes -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-14">
+        <div class="fade-up">
+          <span class="section-label">Le marché nîmois</span>
+          <h2 class="text-3xl font-bold mt-1 mb-5" style="color: #0a0f1e;">Nîmes, le <span class="gradient-text">choix stratégique</span></h2>
+          <div class="space-y-4 text-gray-600" style="line-height: 1.8;">
+            <p>5e ville d'Occitanie avec 154 000 habitants, Nîmes bénéficie d'une situation géographique exceptionnelle : à 30 minutes de Montpellier, 1h d'Avignon, et 45 minutes de la mer. La ville connaît une renaissance économique portée par le secteur logistique, le tourisme culturel et l'implantation de nouvelles entreprises.</p>
+            <p>Le marché immobilier nîmois reste l'un des plus accessibles du grand Sud avec un prix moyen de 2 450 €/m² pour les appartements. Un différentiel de 37% par rapport à Montpellier qui attire de nombreux primo-accédants et investisseurs.</p>
+            <p>Notre agence Nîmes, ouverte en 2014 sur le Boulevard Gambetta, est au cœur des transactions du marché. Marc Delorme y supervise une équipe de 2 agents spécialisés dans les transactions résidentielles et commerciales.</p>
+          </div>
+        </div>
+        <div class="fade-up delay-2 grid grid-cols-2 gap-4 content-start">
+          {[
+            { label: 'Prix moyen app.', value: '2 450 €/m²' },
+            { label: 'Prix moyen maison', value: '2 950 €/m²' },
+            { label: 'Délai vente moyen', value: '65 jours' },
+            { label: 'Biens disponibles', value: '320+' },
+            { label: 'Écart vs Montpellier', value: '-37%' },
+            { label: 'Rendement locatif', value: '5 – 7,5%' },
+          ].map(s => (
+            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+              <div class="text-xl font-extrabold gradient-text">{s.value}</div>
+              <div class="text-xs text-gray-500 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biens -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 fade-up">
+        <span class="section-label">Nos annonces</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Sélection à Nîmes</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {biens.map((b, i) => (
+          <div class={`card-base fade-up delay-${i + 1}`}>
+            <img src={b.image} alt={b.type} class="w-full object-cover" style="height: 200px;" loading="lazy" />
+            <div class="p-5">
+              <div class="flex items-start justify-between mb-2">
+                <div>
+                  <h3 class="font-bold text-gray-900">{b.type}</h3>
+                  <p class="text-sm text-gray-500">{b.quartier} · {b.surface}</p>
+                </div>
+                <span class="text-lg font-extrabold whitespace-nowrap" style="color: #0066ff;">{b.prix}</span>
+              </div>
+              <a href="/contact" class="btn-primary w-full justify-center text-sm mt-3">Demander une visite</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Votre projet immobilier à Nîmes"
+    subtitle="Marc et son équipe vous recontactent sous 2h. Agence ouverte du lundi au samedi, 9h–19h."
+    cta={{ label: "Contacter l'agence Nîmes", href: "/contact" }}
+    ctaSecondary={{ label: "04 66 00 00 00", href: "tel:0466000000" }}
+  />
+</BaseLayout>

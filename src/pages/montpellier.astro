@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Nexus Immobilier Montpellier",
+  "description": "Agence immobilière à Montpellier — achat, vente, location et gestion locative.",
+  "telephone": "+33467000000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12 Rue de la Loge",
+    "addressLocality": "Montpellier",
+    "postalCode": "34000",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 43.6108, "longitude": 3.8767 },
+  "url": "https://nexus-immobilier.fr/montpellier",
+  "areaServed": "Montpellier"
+};
+
+const biens = [
+  { type: 'Appartement T3', quartier: 'Port-Marianne', prix: '285 000 €', surface: '72 m²', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80' },
+  { type: 'Maison T5', quartier: 'Hôpitaux-Facultés', prix: '455 000 €', surface: '130 m²', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+  { type: 'Studio meublé', quartier: 'Boutonnet', prix: '142 000 €', surface: '28 m²', image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=400&q=80' },
+];
+---
+
+<BaseLayout
+  title="Agence immobilière Montpellier — Achat, Vente, Location"
+  description="Nexus Immobilier Montpellier : 850+ biens disponibles. Experts du marché montpelliérain depuis 2009. Estimation gratuite, vente rapide, gestion locative."
+  schema={schema}
+>
+  <PageHero
+    label="Montpellier · 34000"
+    title="Agence immobilière Montpellier — Nexus Immobilier"
+    subtitle="Experts du marché montpelliérain depuis 15 ans. 850+ biens disponibles dans tous les quartiers de la métropole."
+    breadcrumb={[{ label: 'Montpellier', href: '/montpellier' }]}
+    image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80"
+  />
+
+  <!-- Présentation marché -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-14">
+        <div class="fade-up">
+          <span class="section-label">Le marché local</span>
+          <h2 class="text-3xl font-bold mt-1 mb-5" style="color: #0a0f1e;">Pourquoi investir à <span class="gradient-text">Montpellier</span> ?</h2>
+          <div class="space-y-4 text-gray-600" style="line-height: 1.8;">
+            <p>8e ville de France par la population et l'une des plus dynamiques économiquement, Montpellier offre un marché immobilier résilient et porteur. Avec 74 000 étudiants, une métropole de 460 000 habitants et un secteur santé/biotech en pleine expansion, la demande locative reste structurellement élevée.</p>
+            <p>Le prix moyen au m² se stabilise autour de 3 850 € pour les appartements, avec de fortes disparités selon les quartiers : de 2 400 € à La Paillade à plus de 6 500 € dans l'Écusson historique.</p>
+            <p>Notre agence est implantée en centre-ville depuis 2009. Nos agents connaissent chaque rue, chaque copropriété, chaque tendance de quartier. Cette connaissance terrain est irremplaçable pour acheter au bon prix ou vendre rapidement.</p>
+          </div>
+        </div>
+
+        <!-- Stats locales -->
+        <div class="fade-up delay-2 grid grid-cols-2 gap-4 content-start">
+          {[
+            { label: 'Prix moyen app.', value: '3 850 €/m²' },
+            { label: 'Prix moyen maison', value: '4 100 €/m²' },
+            { label: 'Délai vente moyen', value: '45 jours' },
+            { label: 'Biens disponibles', value: '850+' },
+            { label: 'Tension locative', value: '14 : 1' },
+            { label: 'Rendement locatif', value: '4 – 6,8%' },
+          ].map(s => (
+            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+              <div class="text-xl font-extrabold gradient-text">{s.value}</div>
+              <div class="text-xs text-gray-500 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biens disponibles -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 fade-up">
+        <span class="section-label">Sélection du moment</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Biens disponibles à Montpellier</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {biens.map((b, i) => (
+          <div class={`card-base fade-up delay-${i + 1}`}>
+            <img src={b.image} alt={b.type} class="w-full object-cover" style="height: 200px;" loading="lazy" />
+            <div class="p-5">
+              <div class="flex items-start justify-between mb-2">
+                <div>
+                  <h3 class="font-bold text-gray-900">{b.type}</h3>
+                  <p class="text-sm text-gray-500">{b.quartier} · {b.surface}</p>
+                </div>
+                <span class="text-lg font-extrabold whitespace-nowrap" style="color: #0066ff;">{b.prix}</span>
+              </div>
+              <a href="/contact" class="btn-primary w-full justify-center text-sm mt-3">Demander une visite</a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8 fade-up">
+        <a href="/contact" class="btn-secondary">Voir tous les biens à Montpellier</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quartiers -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 fade-up">
+        <span class="section-label">Nos quartiers</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Guide des quartiers montpelliérains</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { name: "L'Écusson", prix: '5 200–6 800 €/m²', style: 'Prestige & patrimoine' },
+          { name: 'Port-Marianne', prix: '3 800–4 600 €/m²', style: 'Moderne & connecté' },
+          { name: 'Hôpitaux-Facultés', prix: '3 200–4 000 €/m²', style: 'Familial & vert' },
+          { name: 'Boutonnet', prix: '3 500–4 500 €/m²', style: 'Bohème & étudiant' },
+          { name: 'Antigone', prix: '2 800–3 800 €/m²', style: 'Architecture & culture' },
+          { name: 'Près-d\'Arènes', prix: '2 600–3 200 €/m²', style: 'Accessible & pratique' },
+          { name: 'Nouveau St-Roch', prix: '3 600–4 200 €/m²', style: 'Émergent & tendance' },
+          { name: 'Aiguelongue', prix: '3 800–4 800 €/m²', style: 'Résidentiel & calme' },
+        ].map((q, i) => (
+          <div class={`fade-up delay-${(i % 4) + 1} p-4 rounded-xl border border-gray-100 bg-white`}>
+            <h3 class="font-bold text-gray-900 mb-1">{q.name}</h3>
+            <p class="text-xs font-semibold mb-1" style="color: #0066ff;">{q.prix}</p>
+            <p class="text-xs text-gray-400">{q.style}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Votre projet immobilier à Montpellier" subtitle="Nos agents montpelliérains vous recontactent sous 2h, du lundi au samedi." />
+</BaseLayout>

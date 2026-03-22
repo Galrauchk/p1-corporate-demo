@@ -1,17 +1,76 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsSection from '../components/StatsSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import VillesSection from '../components/VillesSection.astro';
+import TestimonialsSlider from '../components/TestimonialsSlider.astro';
+import TeamSection from '../components/TeamSection.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import CTABanner from '../components/CTABanner.astro';
 
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://nexus-immobilier.fr/#agency",
+      "name": "Nexus Immobilier",
+      "description": "Agence immobilière à Montpellier, Nîmes et Sète — achat, vente, location et gestion locative.",
+      "url": "https://nexus-immobilier.fr",
+      "telephone": "+33467000000",
+      "email": "contact@nexus-immobilier.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12 Rue de la Loge",
+        "addressLocality": "Montpellier",
+        "postalCode": "34000",
+        "addressCountry": "FR"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 43.6108, "longitude": 3.8767 },
+      "openingHours": "Mo-Sa 09:00-19:00",
+      "areaServed": ["Montpellier", "Nîmes", "Sète"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "312"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien coûte une estimation immobilière avec Nexus ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "L'estimation est entièrement gratuite et sans engagement. Nos agents se déplacent et vous remettent un rapport détaillé sous 48h." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels sont vos honoraires pour la vente ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nos honoraires de vente sont de 3,5% TTC du prix de vente, parmi les plus compétitifs du marché régional." }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous uniquement à Montpellier ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Non, nous couvrons Montpellier et l'ensemble de la métropole, mais aussi Nîmes et Sète grâce à nos trois agences." }
+        }
+      ]
+    }
+  ]
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Agence immobilière Montpellier, Nîmes, Sète"
+  description="Nexus Immobilier — agence immobilière à Montpellier, Nîmes et Sète. Achat, vente, location et gestion locative depuis 15 ans. Estimation gratuite en 48h."
+  schema={schema}
+>
+  <Hero />
+  <StatsSection />
+  <ServicesSection limit={3} />
+  <VillesSection />
+  <TestimonialsSlider />
+  <TeamSection />
+  <BlogPreview />
+  <CTABanner />
+</BaseLayout>

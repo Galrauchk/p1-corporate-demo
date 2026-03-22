@@ -1,0 +1,89 @@
+---
+// Section équipe — fond navy dark, 4 agents
+const agents = [
+  {
+    name: 'Sarah Benchekroun',
+    role: 'Directrice & Fondatrice',
+    city: 'Montpellier',
+    exp: '15 ans',
+    bio: 'Spécialiste du marché montpelliérain, Sarah a fondé Nexus en 2009 après 8 ans chez BNP Immobilier.',
+    photo: 'https://picsum.photos/seed/sarah-n/120/120',
+    langs: ['Français', 'Anglais', 'Arabe'],
+  },
+  {
+    name: 'Marc Delorme',
+    role: 'Responsable Transactions',
+    city: 'Montpellier · Nîmes',
+    exp: '11 ans',
+    bio: 'Expert en vente et négociation, Marc a géré plus de 400 transactions résidentielles et commerciales.',
+    photo: 'https://picsum.photos/seed/marc-n/120/120',
+    langs: ['Français', 'Espagnol'],
+  },
+  {
+    name: 'Laure Vidal',
+    role: 'Spécialiste Location',
+    city: 'Montpellier · Sète',
+    exp: '7 ans',
+    bio: "Laure maîtrise parfaitement le marché locatif étudiant et familial. Zéro vacance locative sur son portefeuille.",
+    photo: 'https://picsum.photos/seed/laure-n/120/120',
+    langs: ['Français', 'Anglais'],
+  },
+  {
+    name: 'Thomas Girard',
+    role: 'Gestion Locative & Patrimoine',
+    city: 'Nîmes · Sète',
+    exp: '9 ans',
+    bio: 'Thomas accompagne 120 propriétaires-bailleurs dans la gestion de leur patrimoine immobilier.',
+    photo: 'https://picsum.photos/seed/thomas-n/120/120',
+    langs: ['Français', 'Italien'],
+  },
+];
+---
+
+<section style="background: #0a0f1e;" class="section-py">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-14 fade-up">
+      <span class="section-label" style="color: #00e5ff;">L'équipe</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-1 mb-3 text-white">
+        Des agents qui connaissent <span class="gradient-text">votre quartier</span>
+      </h2>
+      <p class="max-w-lg mx-auto" style="color: #94a3b8; line-height: 1.7;">
+        4 professionnels passionnés, implantés localement, disponibles du lundi au samedi.
+      </p>
+    </div>
+
+    <!-- Grid 4 colonnes desktop -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {agents.map((agent, i) => (
+        <div class={`team-card-dark fade-up delay-${i + 1}`}>
+          <!-- Photo circulaire -->
+          <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2" style="border-color: rgba(0,229,255,0.4);">
+            <img src={agent.photo} alt={agent.name} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+
+          <!-- Infos -->
+          <h3 class="font-bold text-white text-base mb-1">{agent.name}</h3>
+          <p class="text-sm mb-1" style="color: #00e5ff;">{agent.role}</p>
+          <p class="text-xs mb-3" style="color: #475569;">{agent.city} · {agent.exp} exp.</p>
+          <p class="text-xs leading-relaxed mb-4" style="color: #94a3b8; line-height: 1.6;">{agent.bio}</p>
+
+          <!-- Langues -->
+          <div class="flex flex-wrap gap-1.5 justify-center">
+            {agent.langs.map(l => (
+              <span class="text-xs px-2 py-0.5 rounded-full" style="background: rgba(0,229,255,0.1); color: #94a3b8;">{l}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12 fade-up">
+      <a href="/notre-agence" class="btn-outline-cyan">
+        Découvrir notre agence
+      </a>
+    </div>
+  </div>
+</section>

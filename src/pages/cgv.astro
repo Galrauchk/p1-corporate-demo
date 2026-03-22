@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout
+  title="CGV — Conditions Générales de Vente Nexus Immobilier"
+  description="Conditions Générales de Vente de Nexus Immobilier. Honoraires, modalités de paiement, obligations des parties, médiation."
+>
+  <PageHero
+    label="Conditions générales"
+    title="Conditions Générales de Vente"
+    subtitle="En vigueur au 1er janvier 2026"
+    breadcrumb={[{ label: 'CGV', href: '/cgv' }]}
+  />
+
+  <section class="section-py bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="space-y-8 text-gray-600 leading-relaxed">
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 1 — Identité du professionnel</h2>
+          <p>Nexus Immobilier SARL, détentrice de la carte professionnelle T n° CPI 3401 2018 000 012 345 délivrée par la Chambre de Commerce et d'Industrie de l'Hérault. Garantie financière : GALIAN — 89 rue La Boétie, 75008 Paris. Assurance RCP : Groupama.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 2 — Honoraires</h2>
+          <p class="mb-3">Conformément à l'article L.112-3 du Code de la Consommation, nos honoraires sont affichés TTC dans chacune de nos agences et sur nos annonces. Les honoraires sont exigibles à la signature de l'acte authentique chez le notaire.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg overflow-hidden">
+              <thead>
+                <tr style="background: #f8fafc;">
+                  <th class="text-left p-3 border-b border-gray-200 font-semibold text-gray-900">Prestation</th>
+                  <th class="text-left p-3 border-b border-gray-200 font-semibold text-gray-900">Honoraires TTC</th>
+                  <th class="text-left p-3 border-b border-gray-200 font-semibold text-gray-900">À la charge de</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { prest: 'Vente mandat exclusif', hon: '3,5% du prix de vente', charge: 'Acquéreur ou vendeur (convention)' },
+                  { prest: 'Vente mandat simple', hon: '4% du prix de vente', charge: 'Acquéreur ou vendeur' },
+                  { prest: 'Mise en location', hon: '1 mois de loyer CC', charge: 'Partagé bailleur/locataire' },
+                  { prest: 'Gestion locative', hon: '7% HT des loyers', charge: 'Bailleur' },
+                  { prest: 'Estimation', hon: 'Gratuit', charge: 'N/A' },
+                ].map(r => (
+                  <tr class="border-b border-gray-100">
+                    <td class="p-3">{r.prest}</td>
+                    <td class="p-3 font-medium" style="color: #0066ff;">{r.hon}</td>
+                    <td class="p-3 text-gray-500">{r.charge}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 3 — Obligations de Nexus Immobilier</h2>
+          <p>Nexus Immobilier s'engage à exercer sa mission avec diligence et loyauté, dans le respect de la déontologie de la profession immobilière définie par le décret du 1er juillet 2015. Nos agents sont tenus au secret professionnel et à l'obligation de conseil.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 4 — Médiation</h2>
+          <p>Conformément aux articles L.611-1 et R.616-1 du Code de la consommation, tout litige peut être soumis à la médiation. Notre médiateur : MEDIMMOBILIER — 1 allée du Château, 06500 Menton. Saisine en ligne : www.medimmobilier.eu.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 5 — Rétractation</h2>
+          <p>Conformément à la loi Hamon du 17 mars 2014, tout mandant non professionnel dispose d'un délai de rétractation de 14 jours calendaires à compter de la signature du mandat, pour les contrats conclus à distance ou hors établissement.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-bold mb-3" style="color: #0a0f1e;">Article 6 — Droit applicable</h2>
+          <p>Les présentes CGV sont soumises au droit français. Tout litige sera porté devant les tribunaux compétents du ressort de la Cour d'appel de Montpellier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

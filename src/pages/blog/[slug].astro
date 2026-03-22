@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/CTABanner.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'marche-immobilier-montpellier-2026' } },
+    { params: { slug: 'etapes-vendre-bien-immobilier' } },
+    { params: { slug: 'investissement-locatif-montpellier' } },
+    { params: { slug: 'dpe-nouvelles-regles-2025' } },
+    { params: { slug: 'acheter-sete-ile-singuliere' } },
+    { params: { slug: 'negocier-prix-immobilier' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const articlesData: Record<string, {
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  dateISO: string;
+  readTime: string;
+  image: string;
+  author: string;
+  content: string[];
+}> = {
+  'marche-immobilier-montpellier-2026': {
+    title: "Marché immobilier à Montpellier en 2026 : tendances et opportunités",
+    description: "Analyse du marché immobilier montpelliérain en 2026. Prix par quartier, tendances, projets urbains et conseils d'experts Nexus Immobilier.",
+    category: "Marché immobilier",
+    date: "15 mars 2026",
+    dateISO: "2026-03-15",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80",
+    author: "Sarah Benchekroun",
+    content: [
+      "Après deux années de hausse soutenue (entre +8% et +12% selon les secteurs), le marché immobilier montpelliérain amorce une stabilisation en 2026. Les prix moyens s'établissent à 3 850 €/m² pour les appartements et 4 100 €/m² pour les maisons, avec de fortes variations selon les quartiers.",
+      "**Les quartiers à surveiller.** L'Écusson et les Beaux-Arts restent les plus chers (5 200–6 800 €/m²) mais voient leur dynamisme ralentir. En revanche, Port-Marianne et Nouveau Saint-Roch poursuivent leur valorisation grâce aux livraisons de programmes neufs et aux aménagements du tramway. Les prix y progressent encore de +3 à +5% annuels.",
+      "**Les opportunités du moment.** Les biens avec DPE E-G constituent une vraie opportunité pour les acquéreurs capables de financer une rénovation. Décotés de 15 à 25% par rapport aux équivalents bien classés, ils offrent un potentiel de plus-value important une fois rénovés, surtout avec les aides MaPrimeRénov' et l'éco-PTZ.",
+      "**Nos recommandations.** Pour les acquéreurs, 2026 est une fenêtre favorable : les taux de crédit se stabilisent sous les 3,5%, les délais de vente s'allongent et les vendeurs acceptent davantage de négocier. Pour les vendeurs, la qualité du bien (DPE, état général) détermine plus que jamais la rapidité et le niveau de vente.",
+    ],
+  },
+  'etapes-vendre-bien-immobilier': {
+    title: "Les 10 étapes clés pour vendre votre bien au meilleur prix",
+    description: "Guide complet pour vendre votre appartement ou maison au meilleur prix. Estimation, home staging, diffusion, négociation : tout ce qu'il faut savoir.",
+    category: "Vente",
+    date: "2 mars 2026",
+    dateISO: "2026-03-02",
+    readTime: "5 min",
+    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80",
+    author: "Marc Delorme",
+    content: [
+      "Vendre un bien immobilier au meilleur prix n'est pas le fruit du hasard. C'est le résultat d'une préparation rigoureuse, d'une mise en valeur soignée et d'une stratégie de diffusion adaptée. Voici les 10 étapes incontournables.",
+      "**1. L'estimation réaliste.** C'est le fondement. Un bien surestimé reste sur le marché et finit par se vendre en dessous de sa vraie valeur. Une estimation professionnelle basée sur les transactions comparables récentes est indispensable.",
+      "**2. Les diagnostics obligatoires.** DPE, amiante, plomb, électricité, gaz, termites selon la zone… Constituez votre dossier de diagnostics dès le départ pour ne pas retarder la vente.",
+      "**3. Le home staging.** Désencombrer, dépersonnaliser, rafraîchir la peinture, nettoyer les joints. Un budget de 500 à 2 000€ peut faire gagner 5 à 15% sur le prix de vente.",
+      "**4. La reportage photo professionnel.** Les photos représentent 80% de l'impression première sur les portails. Des photos mal éclairées ou recadrées peuvent faire fuir des acheteurs sérieux.",
+      "**5. La diffusion multi-canal.** SeLoger, Leboncoin, Logic-Immo, réseau d'agences, réseaux sociaux, base d'acquéreurs de l'agence. Plus la diffusion est large, plus la concurrence entre acheteurs joue en votre faveur.",
+    ],
+  },
+  'investissement-locatif-montpellier': {
+    title: "Investissement locatif à Montpellier : rentabilité, fiscalité et zones à privilégier",
+    description: "Guide d'investissement locatif à Montpellier. Rendements bruts 4-6%, dispositifs Pinel LMNP Denormandie, quartiers recommandés par nos experts.",
+    category: "Investissement",
+    date: "18 février 2026",
+    dateISO: "2026-02-18",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80",
+    author: "Thomas Girard",
+    content: [
+      "Montpellier est régulièrement classée parmi les meilleures villes françaises pour l'investissement locatif. 8e ville la plus peuplée de France, université de 74 000 étudiants, CHU de 10 000 employés, économie tertiaire dynamique : tous les ingrédients d'un marché locatif tendu et porteur sont réunis.",
+      "**Les rendements bruts observés.** Selon nos données de transaction 2025, les rendements bruts varient de 4,2% pour un T3 bien placé à 6,8% pour un studio en zone universitaire. La tension locative (ratio demandes/offres) est actuellement de 14 pour 1 à Montpellier.",
+      "**Quels dispositifs fiscaux choisir ?** Le LMNP (Location Meublée Non Professionnelle) est le plus adapté pour la plupart des investisseurs : amortissement comptable, récupération de TVA sur le neuf, fiscalité allégée. Le Pinel reste pertinent pour les programmes neufs en zone A, avec des réductions d'impôt de 9 à 14%.",
+      "**Les quartiers à privilégier.** Pour la rentabilité pure : secteur Gare Saint-Roch et Figuerolles (public étudiant, 5-7% brut). Pour la valorisation à long terme : Port-Marianne, Odysseum, Nouveau Saint-Roch. Pour les familles : Hôpitaux-Facultés, La Paillade rénovée.",
+    ],
+  },
+  'dpe-nouvelles-regles-2025': {
+    title: "DPE 2025-2026 : nouvelles règles et impact sur la valeur de votre bien",
+    description: "Comprendre le DPE révisé en 2025-2026. Logements G interdits à la location, obligations propriétaires, impact sur les prix. Guide Nexus Immobilier.",
+    category: "Réglementation",
+    date: "5 février 2026",
+    dateISO: "2026-02-05",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+    author: "Laure Vidal",
+    content: [
+      "La loi Climat et Résilience continue de transformer en profondeur le marché immobilier français. Depuis le 1er janvier 2025, les logements classés G (les plus énergivores) sont interdits à la mise en location. En 2028, ce sera au tour des F. Cette évolution réglementaire crée des opportunités mais aussi des risques pour les propriétaires.",
+      "**Impact sur les prix de vente.** Selon nos données de transaction, un bien classé F ou G se négocie désormais 12 à 22% en dessous d'un équivalent classé D ou E. La décote se creuse à mesure que les échéances réglementaires approchent. Pour les acheteurs avertis, c'est une opportunité réelle.",
+      "**Les obligations du bailleur.** Depuis le 1er janvier 2025, tout nouveau bail ou renouvellement de bail pour un logement classé G est illégal. Les bailleurs actuels avec des locataires en place peuvent se voir imposer des travaux ou une extinction de loyer.",
+      "**Quels travaux et quelles aides ?** Le remplacement du système de chauffage (PAC, chaudière à condensation) représente souvent le levier le plus efficace. MaPrimeRénov', CEE et éco-PTZ peuvent couvrir 40 à 70% du coût des travaux selon les revenus.",
+    ],
+  },
+  'acheter-sete-ile-singuliere': {
+    title: "Acheter à Sète : guide complet de l'île singulière de la Méditerranée",
+    description: "Guide d'achat immobilier à Sète. Marché, prix par quartier, résidence principale, secondaire ou investissement. Conseils de nos agents Nexus présents sur place.",
+    category: "Conseils achat",
+    date: "20 janvier 2026",
+    dateISO: "2026-01-20",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+    author: "Sarah Benchekroun",
+    content: [
+      "Sète, la ville de Georges Brassens et de Paul Valéry, n'est pas seulement une destination touristique. C'est aussi un marché immobilier en pleine transformation, porté par une attractivité croissante et une qualité de vie méditerranéenne incomparable.",
+      "**Le marché en chiffres.** Les prix moyens à Sète s'établissent à 2 950 €/m² pour les appartements et 3 800 €/m² pour les maisons, soit 25 à 30% en dessous de Montpellier. Le marché a progressé de +18% en 5 ans, porté par la demande de résidences secondaires et l'exode urbain post-Covid.",
+      "**Acheter en résidence principale.** Le quartier de la Corniche, les bords du Canal Royal et les hauteurs offrent les meilleures perspectives. Les transports vers Montpellier (20 min en TER) permettent de combiner vie sétoise et emploi métropolitain.",
+      "**Investissement locatif saisonnier.** Avec 3 mois de haute saison (juin-août), un appartement bien situé peut générer 8 000 à 15 000€ de revenus locatifs saisonniers. La réglementation sur les meublés touristiques est à surveiller mais reste favorable.",
+    ],
+  },
+  'negocier-prix-immobilier': {
+    title: "Négocier le prix d'un bien immobilier : techniques et arguments qui fonctionnent",
+    description: "Techniques de négociation immobilière éprouvées. Arguments efficaces, erreurs à éviter, comportement des vendeurs. Guide de nos agents Nexus Immobilier.",
+    category: "Conseils achat",
+    date: "8 janvier 2026",
+    dateISO: "2026-01-08",
+    readTime: "6 min",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80",
+    author: "Marc Delorme",
+    content: [
+      "Contrairement à ce que beaucoup d'acheteurs pensent, négocier un bien immobilier n'est pas une question de caractère mais de méthode. En 2025, dans un marché qui se détend légèrement, les marges de négociation moyennes atteignent 3 à 7% selon les secteurs.",
+      "**Les arguments les plus efficaces.** Un DPE dégradé (E, F ou G) justifie une remise de 5 à 15% selon l'ampleur des travaux à prévoir. Un temps de commercialisation supérieur à 60 jours signale un bien surestimé et légitime une offre basse. La présence de travaux urgents visibles (toiture, installation électrique) est un levier de négociation sous-utilisé.",
+      "**L'offre d'achat : la technique.** Formuler une offre basse mais argumentée vaut mieux qu'une offre à prix dit 'raisonnable'. Accompagnez toujours votre offre d'un argumentaire écrit : comparaisons de ventes récentes, liste des travaux, durée de mise en vente. Le vendeur comprend que vous avez fait votre travail.",
+      "**Ce qu'il ne faut jamais faire.** Critiquer le bien de manière émotionnelle ou condescendante. Laisser voir votre enthousiasme lors de la visite. Faire une offre sans avoir visité d'autres biens comparables. Ces erreurs signalent à l'agent et au vendeur votre manque de préparation.",
+    ],
+  },
+};
+
+const article = articlesData[slug ?? ''];
+if (!article) return Astro.redirect('/blog');
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.title,
+  "description": article.description,
+  "image": article.image,
+  "author": { "@type": "Person", "name": article.author },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexus Immobilier",
+    "logo": { "@type": "ImageObject", "url": "https://nexus-immobilier.fr/favicon.svg" }
+  },
+  "datePublished": article.dateISO,
+  "mainEntityOfPage": `https://nexus-immobilier.fr/blog/${slug}`
+};
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nexus-immobilier.fr" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://nexus-immobilier.fr/blog" },
+    { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://nexus-immobilier.fr/blog/${slug}` },
+  ]
+};
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  schema={{ "@context": "https://schema.org", "@graph": [schema, breadcrumb] }}
+>
+  <!-- Hero article -->
+  <section class="relative overflow-hidden" style="height: 420px;">
+    <img src={article.image} alt={article.title} class="w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0" style="background: rgba(10,15,30,0.72);"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="max-w-8xl mx-auto px-4 sm:px-6 pb-12 w-full">
+        <nav class="text-xs text-white/50 mb-4 flex items-center gap-2">
+          <a href="/" class="hover:text-white">Accueil</a>
+          <span>/</span>
+          <a href="/blog" class="hover:text-white">Blog</a>
+          <span>/</span>
+          <span class="text-white/80">{article.title.slice(0, 50)}…</span>
+        </nav>
+        <span class="badge badge-blue mb-3">{article.category}</span>
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight max-w-3xl mb-3">{article.title}</h1>
+        <div class="flex flex-wrap items-center gap-4 text-sm text-white/60">
+          <span>Par <span class="text-white font-medium">{article.author}</span></span>
+          <span>·</span>
+          <span>{article.date}</span>
+          <span>·</span>
+          <span>{article.readTime} de lecture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-3 gap-14">
+
+        <!-- Article body -->
+        <div class="lg:col-span-2">
+          <div class="prose prose-lg max-w-none">
+            {article.content.map(paragraph => (
+              <div class="mb-5 text-gray-600 leading-relaxed" style="line-height: 1.8;" set:html={
+                paragraph
+                  .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-bold text-gray-900">$1</strong>')
+              } />
+            ))}
+          </div>
+
+          <!-- Share -->
+          <div class="mt-10 pt-8 border-t border-gray-100 flex items-center gap-4">
+            <span class="text-sm font-semibold text-gray-600">Partager :</span>
+            {['LinkedIn', 'Twitter', 'Email'].map(s => (
+              <a href="#" class="text-sm px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:border-blue-400 hover:text-blue-600 transition-colors">{s}</a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lg:col-span-1">
+          <div class="sticky top-24 space-y-6">
+            <!-- CTA estimation -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+              <h3 class="font-bold text-gray-900 mb-2">Estimation gratuite</h3>
+              <p class="text-sm text-gray-500 mb-4">Vous vendez un bien ? Obtenez votre estimation en 48h.</p>
+              <a href="/estimation" class="btn-primary w-full justify-center text-sm">Demander mon estimation</a>
+            </div>
+
+            <!-- Contact agent -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+              <img src="https://picsum.photos/seed/sarah-n/60/60" alt={article.author} class="w-12 h-12 rounded-full border-2 mb-3" style="border-color: #00e5ff;" />
+              <div class="text-sm font-bold text-gray-900 mb-1">Rédigé par {article.author}</div>
+              <div class="text-xs text-gray-400 mb-4">Agent Nexus Immobilier</div>
+              <a href="/contact" class="btn-secondary w-full justify-center text-sm">Contacter cet agent</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

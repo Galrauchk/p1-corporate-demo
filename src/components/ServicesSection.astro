@@ -1,0 +1,104 @@
+---
+interface Props {
+  limit?: number;
+}
+const { limit } = Astro.props;
+
+const allServices = [
+  {
+    title: 'Achat immobilier',
+    desc: "Trouvez le bien idéal grâce à notre connaissance fine des marchés locaux. Accompagnement de la recherche à la signature chez le notaire.",
+    price: 'À partir de 4 500 €',
+    href: '/acheter',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
+    badge: 'Achat',
+  },
+  {
+    title: 'Vendre votre bien',
+    desc: "Estimation précise, photos professionnelles, diffusion maximale. Nous vendons vite et au juste prix grâce à notre réseau et notre expertise locale.",
+    price: 'Honoraires 3.5% TTC',
+    href: '/vendre',
+    image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
+    badge: 'Vente',
+  },
+  {
+    title: 'Location',
+    desc: "Sélection rigoureuse des locataires, état des lieux détaillé, rédaction du bail. Votre bien loué en moins de 30 jours ou remboursé.",
+    price: 'Honoraires 1 mois',
+    href: '/louer',
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
+    badge: 'Location',
+  },
+  {
+    title: 'Gestion locative',
+    desc: "Gestion complète : encaissement des loyers, gestion des sinistres, suivi des travaux, déclaration fiscale. Vous percevez vos revenus sans contrainte.",
+    price: '7% HT des loyers',
+    href: '/gestion-locative',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+    badge: 'Gestion',
+  },
+  {
+    title: 'Estimation gratuite',
+    desc: "Obtenez une estimation précise et argumentée de votre bien en 48h. Méthode comparative, analyse du marché local, rapport détaillé.",
+    price: 'Gratuit & sans engagement',
+    href: '/estimation',
+    image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=600&q=80',
+    badge: '🎁 Offert',
+  },
+];
+
+const services = limit ? allServices.slice(0, limit) : allServices;
+---
+
+<section style="background: #f8fafc;" class="section-py">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-12 fade-up">
+      <span class="section-label">Ce que nous faisons</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-1 mb-3" style="color: #0a0f1e;">
+        Tous vos besoins immobiliers, <span class="gradient-text">un seul interlocuteur</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto" style="line-height: 1.7;">
+        De l'estimation à la remise des clés, nos agents vous accompagnent à chaque étape.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class={`grid gap-6 ${services.length >= 4 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-3'}`}>
+      {services.map((svc, i) => (
+        <article class={`card-base flex flex-col fade-up delay-${(i % 3) + 1}`}>
+          <!-- Image avec overlay hover -->
+          <div class="svc-img-wrap">
+            <img src={svc.image} alt={svc.title} loading="lazy" />
+            <div class="overlay"></div>
+            <div class="title-hover">
+              <h3 class="text-lg font-bold text-white">{svc.title}</h3>
+            </div>
+            <!-- Badge catégorie -->
+            <span class="absolute top-3 left-3 badge badge-blue z-10">{svc.badge}</span>
+          </div>
+
+          <!-- Content -->
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-base font-bold mb-2" style="color: #0a0f1e;">{svc.title}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-4" style="line-height: 1.7;">{svc.desc}</p>
+
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-semibold" style="color: #00e5ff;">{svc.price}</span>
+              <a href={svc.href} class="btn-secondary text-xs py-1.5 px-3.5">En savoir plus</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA centré -->
+    <div class="text-center mt-10 fade-up">
+      <a href="/acheter" class="btn-primary-pill">
+        Voir tous nos services
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

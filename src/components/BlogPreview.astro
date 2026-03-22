@@ -1,0 +1,100 @@
+---
+const articles = [
+  {
+    title: "Marché immobilier à Montpellier en 2026 : tendances et opportunités",
+    excerpt: "Les prix se stabilisent après deux ans de hausse. Analyse des quartiers porteurs, projets d'urbanisme et conseils pour saisir les bonnes opportunités.",
+    category: 'Marché immobilier',
+    date: '15 mars 2026',
+    readTime: '7 min',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
+    href: '/blog/marche-immobilier-montpellier-2026',
+  },
+  {
+    title: "Les 10 étapes clés pour vendre votre bien au meilleur prix",
+    excerpt: "De la préparation du logement à la signature chez le notaire, découvrez notre méthode éprouvée pour vendre vite et au prix juste sans mauvaises surprises.",
+    category: 'Vente',
+    date: '2 mars 2026',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
+    href: '/blog/etapes-vendre-bien-immobilier',
+  },
+  {
+    title: "Investissement locatif à Montpellier : rentabilité, fiscalité et zones à privilégier",
+    excerpt: "La métropole montpelliéraine offre des rendements bruts de 4 à 6%. Pinel, LMNP, Denormandie : quel dispositif choisir selon votre profil ?",
+    category: 'Investissement',
+    date: '18 février 2026',
+    readTime: '9 min',
+    image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=600&q=80',
+    href: '/blog/investissement-locatif-montpellier',
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  'Marché immobilier': 'badge-blue',
+  'Vente': 'badge-cyan',
+  'Investissement': 'badge-orange',
+};
+---
+
+<section class="section-py bg-white">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <div class="fade-up">
+        <span class="section-label">Conseils & actualités</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-1" style="color: #0a0f1e;">
+          Nos derniers <span class="gradient-text">articles</span>
+        </h2>
+      </div>
+      <a href="/blog" class="fade-up btn-secondary text-sm self-start whitespace-nowrap">
+        Tous les articles →
+      </a>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {articles.map((article, i) => (
+        <article class={`blog-card fade-up delay-${i + 1} flex flex-col`} itemscope itemtype="https://schema.org/Article">
+          <!-- Image -->
+          <a href={article.href} class="block overflow-hidden" style="height: 200px;">
+            <img
+              src={article.image}
+              alt={article.title}
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              loading="lazy"
+              itemprop="image"
+            />
+          </a>
+
+          <div class="p-5 flex flex-col flex-1">
+            <!-- Category + date -->
+            <div class="flex items-center gap-3 mb-3">
+              <span class={`badge ${categoryColors[article.category] ?? 'badge-blue'}`}>{article.category}</span>
+              <span class="text-xs text-gray-400" itemprop="datePublished">{article.date}</span>
+              <span class="text-xs text-gray-400">· {article.readTime}</span>
+            </div>
+
+            <!-- Title -->
+            <a href={article.href} itemprop="url">
+              <h3 class="text-base font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors leading-snug" itemprop="headline"
+                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+              >{article.title}</h3>
+            </a>
+
+            <!-- Excerpt -->
+            <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-4"
+              style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"
+              itemprop="description"
+            >{article.excerpt}</p>
+
+            <a href={article.href} class="flex items-center gap-1.5 text-sm font-semibold transition-colors hover:gap-3" style="color: #0066ff;">
+              Lire l'article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

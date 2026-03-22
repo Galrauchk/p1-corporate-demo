@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import TeamSection from '../components/TeamSection.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const valeurs = [
+  { icon: '🤝', title: 'Proximité', desc: "Nos agents habitent les quartiers qu'ils vendent. Cette connaissance terrain est irremplaçable." },
+  { icon: '🎯', title: 'Précision', desc: "Estimations basées sur la data, pas sur l'intuition. Nous vendons au juste prix, sans sur-estimation." },
+  { icon: '💬', title: 'Transparence', desc: "Honoraires affichés, comptes rendus réguliers, aucune mauvaise surprise. Vous savez tout, toujours." },
+  { icon: '⚡', title: 'Réactivité', desc: "Réponse sous 2h du lundi au samedi. En immobilier, une bonne affaire ne se rate pas faute de rapidité." },
+  { icon: '🏆', title: 'Excellence', desc: "Membre du réseau FNAIM. Agents formés en continu. Satisfaction client mesurée et publiée." },
+  { icon: '🌱', title: 'Engagement local', desc: "Mécène du festival de danse de Montpellier. Partenaire de 3 associations d'insertion par le logement." },
+];
+
+const avis = [
+  { author: 'Philippe Blanc', note: 5, text: "Professionnels, efficaces, humains. Vente réalisée en 3 semaines à 5% au-dessus de l'estimation initiale.", context: 'Vente T4, Montpellier' },
+  { author: 'Amira Saïd', note: 5, text: "Thomas gère mon appartement depuis 2 ans. Jamais un problème, toujours une solution. Je recommande chaudement.", context: 'Gestion locative, Sète' },
+  { author: 'Éric Mouton', note: 5, text: "Après 4 mois de recherche en solo, Marc m'a trouvé MA maison en 12 jours. Négociation impeccable.", context: 'Achat maison, Nîmes' },
+];
+---
+
+<BaseLayout
+  title="Notre agence immobilière — Nexus Immobilier depuis 2009"
+  description="Découvrez Nexus Immobilier, agence fondée en 2009 à Montpellier. 4 agents experts, 3 agences, 1 200+ transactions réussies. Nos valeurs et notre équipe."
+>
+  <PageHero
+    label="Notre histoire"
+    title="Nexus Immobilier — 15 ans au service de votre patrimoine"
+    subtitle="Fondée en 2009 par Sarah Benchekroun, Nexus est aujourd'hui la référence indépendante de l'immobilier sur Montpellier, Nîmes et Sète."
+    breadcrumb={[{ label: 'Notre agence', href: '/notre-agence' }]}
+    image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&q=80"
+  />
+
+  <!-- Histoire -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="fade-up">
+          <span class="section-label">Notre histoire</span>
+          <h2 class="text-3xl font-bold mt-1 mb-5" style="color: #0a0f1e;">De 1 agent à 3 agences en <span class="gradient-text">15 ans</span></h2>
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>En 2009, Sarah Benchekroun ouvre Nexus Immobilier avec une conviction : le métier d'agent immobilier méritait d'être exercé autrement. Plus rigoureux, plus transparent, plus proche des gens.</p>
+            <p>En 3 ans, l'agence montpelliéraine devient référence dans le centre historique. En 2014, l'agence de Nîmes ouvre, suivie de celle de Sète en 2018.</p>
+            <p>Aujourd'hui, Nexus c'est 4 agents experts, 120 propriétaires-bailleurs accompagnés en gestion locative, et plus de 1 200 transactions menées à bien.</p>
+          </div>
+        </div>
+        <div class="fade-up delay-2">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="L'équipe Nexus Immobilier" class="rounded-2xl shadow-xl w-full object-cover" style="height: 380px;" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valeurs -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Nos valeurs</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Ce qui guide chacune de nos actions</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {valeurs.map((v, i) => (
+          <div class={`fade-up delay-${(i % 3) + 1} flex gap-4 p-5 rounded-xl bg-white border border-gray-100 shadow-sm`}>
+            <span class="text-3xl flex-shrink-0">{v.icon}</span>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">{v.title}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{v.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TeamSection />
+
+  <!-- Avis clients -->
+  <section id="avis" class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Ils nous évaluent</span>
+        <h2 class="text-3xl font-bold mt-1 mb-2" style="color: #0a0f1e;"><span class="gradient-text">4,9 étoiles</span> sur Google</h2>
+        <p class="text-gray-500">312 avis vérifiés — Note moyenne calculée sur les 24 derniers mois</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {avis.map((a, i) => (
+          <div class={`fade-up delay-${i + 1} bg-white p-6 rounded-2xl border border-gray-100 shadow-sm`}>
+            <div class="flex gap-1 mb-3">
+              {Array.from({ length: a.note }).map(() => <svg width="16" height="16" viewBox="0 0 24 24" fill="#0066ff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}
+            </div>
+            <p class="text-sm text-gray-600 italic leading-relaxed mb-4">"{a.text}"</p>
+            <div class="font-bold text-gray-900 text-sm">{a.author}</div>
+            <div class="text-xs text-gray-400">{a.context}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

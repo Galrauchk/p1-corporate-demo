@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const articles = [
+  {
+    slug: 'marche-immobilier-montpellier-2026',
+    title: 'Marché immobilier à Montpellier en 2026 : tendances et opportunités',
+    excerpt: "Les prix se stabilisent après deux ans de hausse. Analyse des quartiers porteurs, projets d'urbanisme et conseils pour saisir les bonnes opportunités en 2026.",
+    category: 'Marché immobilier',
+    date: '15 mars 2026',
+    readTime: '7 min',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
+  },
+  {
+    slug: 'etapes-vendre-bien-immobilier',
+    title: 'Les 10 étapes clés pour vendre votre bien au meilleur prix',
+    excerpt: "De la préparation du logement à la signature chez le notaire, découvrez notre méthode éprouvée pour vendre vite et au prix juste sans mauvaises surprises.",
+    category: 'Vente',
+    date: '2 mars 2026',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
+  },
+  {
+    slug: 'investissement-locatif-montpellier',
+    title: 'Investissement locatif à Montpellier : rentabilité, fiscalité et zones à privilégier',
+    excerpt: "La métropole montpelliéraine offre des rendements bruts de 4 à 6%. Pinel, LMNP, Denormandie : quel dispositif choisir selon votre profil ?",
+    category: 'Investissement',
+    date: '18 février 2026',
+    readTime: '9 min',
+    image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=600&q=80',
+  },
+  {
+    slug: 'dpe-nouvelles-regles-2025',
+    title: 'DPE 2025-2026 : nouvelles règles et impact sur la valeur de votre bien',
+    excerpt: "Les logements classés G sont désormais interdits à la location. Quelles conséquences pour les propriétaires et comment anticiper les travaux de rénovation ?",
+    category: 'Réglementation',
+    date: '5 février 2026',
+    readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+  },
+  {
+    slug: 'acheter-sete-ile-singuliere',
+    title: "Acheter à Sète : guide complet de l'île singulière de la Méditerranée",
+    excerpt: "Résidence principale, secondaire ou investissement ? Sète offre un cadre de vie unique et un marché immobilier attractif. Nos recommandations quartier par quartier.",
+    category: 'Conseils achat',
+    date: '20 janvier 2026',
+    readTime: '8 min',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+  },
+  {
+    slug: 'negocier-prix-immobilier',
+    title: "Négocier le prix d'un bien immobilier : techniques et arguments qui fonctionnent",
+    excerpt: "En moyenne, les acquéreurs obtiennent une remise de 3 à 7% par rapport au prix affiché. Voici les arguments les plus efficaces et les erreurs à éviter.",
+    category: 'Conseils achat',
+    date: '8 janvier 2026',
+    readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
+  },
+];
+
+const categories = ['Tous', 'Marché immobilier', 'Vente', 'Investissement', 'Conseils achat', 'Réglementation'];
+const colorMap: Record<string, string> = {
+  'Marché immobilier': 'badge-blue',
+  'Vente': 'badge-cyan',
+  'Investissement': 'badge-orange',
+  'Conseils achat': 'badge-blue',
+  'Réglementation': 'badge-cyan',
+};
+---
+
+<BaseLayout
+  title="Blog immobilier — Conseils, marché et actualités"
+  description="Conseils immobiliers, analyse du marché à Montpellier, Nîmes et Sète, actualités réglementaires. Le blog expert de Nexus Immobilier."
+>
+  <PageHero
+    label="Blog & Conseils"
+    title="Nos expertises au service de votre projet"
+    subtitle="Actualités du marché, conseils pratiques et analyses locales rédigés par nos agents terrain."
+    breadcrumb={[{ label: 'Blog', href: '/blog' }]}
+  />
+
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+      <!-- Catégories filtre (visuel) -->
+      <div class="flex flex-wrap gap-2 mb-10 fade-up">
+        {categories.map((cat, i) => (
+          <button class={`px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${i === 0 ? 'text-white border-blue-600' : 'text-gray-600 border-gray-200 hover:border-blue-400'}`}
+            style={i === 0 ? 'background: linear-gradient(135deg, #00e5ff, #0066ff);' : ''}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid articles -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+        {articles.map((article, i) => (
+          <article
+            class={`blog-card fade-up delay-${(i % 3) + 1} flex flex-col`}
+            itemscope
+            itemtype="https://schema.org/Article"
+          >
+            <a href={`/blog/${article.slug}`} class="block overflow-hidden" style="height: 200px;">
+              <img src={article.image} alt={article.title} class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" itemprop="image" />
+            </a>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-center gap-3 mb-3">
+                <span class={`badge ${colorMap[article.category] ?? 'badge-blue'}`}>{article.category}</span>
+                <span class="text-xs text-gray-400" itemprop="datePublished">{article.date}</span>
+                <span class="text-xs text-gray-400">· {article.readTime}</span>
+              </div>
+              <a href={`/blog/${article.slug}`}>
+                <h2 class="text-base font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors leading-snug" itemprop="headline"
+                  style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"
+                >{article.title}</h2>
+              </a>
+              <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-4"
+                style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;"
+                itemprop="description"
+              >{article.excerpt}</p>
+              <a href={`/blog/${article.slug}`} class="flex items-center gap-1.5 text-sm font-semibold hover:gap-3 transition-all" style="color: #0066ff;">
+                Lire l'article <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

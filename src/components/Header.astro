@@ -1,0 +1,187 @@
+---
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<!-- ─── Topbar ─── -->
+<div style="background: #0d1a3a;" class="hidden md:block">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 flex items-center justify-between h-9 text-xs text-white/70">
+    <div class="flex items-center gap-5">
+      <span class="flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        12 Rue de la Loge, 34000 Montpellier
+      </span>
+      <span class="flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lun–Sam : 9h–19h
+      </span>
+    </div>
+    <div class="flex items-center gap-5">
+      <a href="tel:0467000000" class="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        04 67 00 00 00
+      </a>
+      <a href="mailto:contact@nexus-immobilier.fr" class="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contact@nexus-immobilier.fr
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Main header ─── -->
+<header id="site-header" class="sticky top-0 z-50 bg-white border-b border-gray-100 transition-shadow duration-200">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between" style="height: 68px;">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 flex-shrink-0">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #00e5ff, #0066ff);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0f1e" stroke-width="2.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="text-base font-extrabold tracking-tight" style="color: #0a0f1e;">Nexus</div>
+          <div class="text-xs font-semibold tracking-wide" style="color: #0066ff;">IMMOBILIER</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-0.5">
+
+        <!-- Acheter dropdown -->
+        <div class="mega-item relative">
+          <a href="/acheter" class={`flex items-center gap-1 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors hover:bg-gray-50 ${isActive('/acheter') ? 'text-blue-600' : 'text-gray-700'}`}>
+            Acheter
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="mega-dd absolute top-full left-1/2 -translate-x-1/2 mt-0 w-[520px] bg-white shadow-2xl z-50 p-5">
+            <div class="grid grid-cols-2 gap-6">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: #0066ff;">Types de biens</p>
+                {[
+                  { label: 'Appartements', href: '/acheter#appartements', icon: '🏢' },
+                  { label: 'Maisons', href: '/acheter#maisons', icon: '🏠' },
+                  { label: 'Terrains', href: '/acheter#terrains', icon: '🌿' },
+                  { label: 'Programmes neufs', href: '/acheter#neufs', icon: '✨' },
+                ].map(item => (
+                  <a href={item.href} class="flex items-center gap-2.5 py-2 px-2 rounded-lg text-sm text-gray-700 font-medium hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                    <span>{item.icon}</span> {item.label}
+                  </a>
+                ))}
+              </div>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: #0066ff;">Nos secteurs</p>
+                {[
+                  { label: 'Montpellier', href: '/montpellier', desc: '850+ biens disponibles' },
+                  { label: 'Nîmes', href: '/nimes', desc: '320+ biens disponibles' },
+                  { label: 'Sète', href: '/sete', desc: '180+ biens disponibles' },
+                ].map(item => (
+                  <a href={item.href} class="block py-2 px-2 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div class="text-sm font-semibold text-gray-900 hover:text-blue-600">{item.label}</div>
+                    <div class="text-xs text-gray-400">{item.desc}</div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vendre dropdown -->
+        <div class="mega-item relative">
+          <a href="/vendre" class={`flex items-center gap-1 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors hover:bg-gray-50 ${isActive('/vendre') ? 'text-blue-600' : 'text-gray-700'}`}>
+            Vendre
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="mega-dd absolute top-full left-1/2 -translate-x-1/2 mt-0 w-56 bg-white shadow-2xl z-50 p-3">
+            {[
+              { label: 'Estimation gratuite', href: '/estimation' },
+              { label: 'Mandat simple', href: '/vendre#mandat-simple' },
+              { label: 'Mandat exclusif', href: '/vendre#mandat-exclusif' },
+            ].map(item => (
+              <a href={item.href} class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                <span style="color: #00e5ff;">›</span> {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Louer dropdown -->
+        <div class="mega-item relative">
+          <a href="/louer" class={`flex items-center gap-1 px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors hover:bg-gray-50 ${isActive('/louer') ? 'text-blue-600' : 'text-gray-700'}`}>
+            Louer
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="mega-dd absolute top-full left-1/2 -translate-x-1/2 mt-0 w-56 bg-white shadow-2xl z-50 p-3">
+            {[
+              { label: 'Appartements', href: '/louer#appartements' },
+              { label: 'Maisons', href: '/louer#maisons' },
+              { label: 'Locaux commerciaux', href: '/louer#commerciaux' },
+            ].map(item => (
+              <a href={item.href} class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                <span style="color: #00e5ff;">›</span> {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {[
+          { label: 'Gestion locative', href: '/gestion-locative' },
+          { label: 'Blog', href: '/blog' },
+          { label: 'Contact', href: '/contact' },
+        ].map(link => (
+          <a
+            href={link.href}
+            class={`px-3.5 py-2 text-sm font-semibold rounded-lg transition-colors hover:bg-gray-50 ${isActive(link.href) ? 'text-blue-600' : 'text-gray-700'}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right CTA -->
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="tel:0467000000" class="flex items-center gap-2 text-sm font-bold" style="color: #0a0f1e;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          04 67 00 00 00
+        </a>
+        <a href="/estimation" class="btn-primary-pill text-sm py-2.5 px-5">
+          Estimation gratuite
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <label for="mob-toggle" class="lg:hidden p-2 rounded-lg cursor-pointer hover:bg-gray-100">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </label>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <input type="checkbox" id="mob-toggle" class="hidden" />
+  <div id="mob-menu" class="hidden lg:hidden flex-col bg-white border-t border-gray-100 px-4 py-4 gap-1 max-h-screen overflow-y-auto">
+    <p class="section-label px-3 mb-1">Acheter</p>
+    {[
+      { label: 'Appartements', href: '/acheter#appartements' },
+      { label: 'Maisons', href: '/acheter#maisons' },
+      { label: 'Terrains', href: '/acheter#terrains' },
+      { label: 'Programmes neufs', href: '/acheter#neufs' },
+    ].map(item => (
+      <a href={item.href} class="px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50">{item.label}</a>
+    ))}
+    <div class="h-px bg-gray-100 my-2"></div>
+    {[
+      { label: 'Vendre', href: '/vendre' },
+      { label: 'Louer', href: '/louer' },
+      { label: 'Gestion locative', href: '/gestion-locative' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Contact', href: '/contact' },
+    ].map(link => (
+      <a href={link.href} class="px-3 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-50">{link.label}</a>
+    ))}
+    <div class="pt-3">
+      <a href="/estimation" class="btn-primary-pill w-full justify-center text-sm">Estimation gratuite</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,27 @@
+---
+// Stats avec fond gradient cyan→bleu + count-up
+---
+
+<section style="background: linear-gradient(135deg, #00e5ff 0%, #0066ff 100%);">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 py-16">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-0">
+      {[
+        { target: 1200, suffix: '+', label: 'Biens vendus', desc: 'depuis 2009' },
+        { target: 15,   suffix: ' ans', label: "D'expérience", desc: 'sur le marché local' },
+        { target: 3,    suffix: '', label: 'Agences', desc: 'Montpellier · Nîmes · Sète' },
+        { target: 98,   suffix: '%', label: 'Clients satisfaits', desc: 'enquête annuelle indépendante' },
+      ].map((stat, i) => (
+        <div
+          class={`fade-up delay-${i + 1} py-10 px-8 text-center ${i < 3 ? 'border-r border-white/30' : ''}`}
+        >
+          <div class="stat-num count-up mb-1"
+            data-target={stat.target}
+            data-suffix={stat.suffix}
+          >0</div>
+          <div class="text-sm font-bold mt-2" style="color: #0a0f1e;">{stat.label}</div>
+          <div class="text-xs mt-1" style="color: rgba(10,15,30,0.6);">{stat.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

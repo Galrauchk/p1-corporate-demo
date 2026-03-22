@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const typesLocation = [
+  {
+    id: 'appartements',
+    title: 'Appartements',
+    desc: "Studios meublés étudiants, T2/T3 pour jeunes actifs, grands T4/T5 familiaux. Toutes gammes, tous secteurs.",
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
+    count: '280+',
+  },
+  {
+    id: 'maisons',
+    title: 'Maisons',
+    desc: "Maisons avec jardin en périphérie, maisons de ville avec terrasse, villas avec piscine saisonnières.",
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    count: '95+',
+  },
+  {
+    id: 'commerciaux',
+    title: 'Locaux commerciaux',
+    desc: "Boutiques, bureaux, entrepôts et locaux d'activité à Montpellier, Nîmes et Sète. Bail commercial 3/6/9.",
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+    count: '40+',
+  },
+];
+
+const processLocation = [
+  { step: '1', title: 'Dépôt de candidature', desc: "Formulaire en ligne sécurisé. Pièces justificatives dématérialisées via DossierFacile." },
+  { step: '2', title: 'Étude du dossier', desc: "Analyse sous 48h. Solvabilité vérifiée, garants acceptés (physiques, Visale, GLI)." },
+  { step: '3', title: 'Visite & validation', desc: "Visite sur rendez-vous avec votre agent. Réponse définitive sous 72h." },
+  { step: '4', title: 'Signature du bail', desc: "Bail conforme Alur signé en présentiel ou électroniquement. État des lieux détaillé." },
+];
+---
+
+<BaseLayout
+  title="Location appartement & maison Montpellier, Nîmes, Sète"
+  description="Louez un appartement, une maison ou un local commercial avec Nexus Immobilier. 415+ biens disponibles à Montpellier, Nîmes et Sète. Candidature en ligne 48h."
+>
+  <PageHero
+    label="Location immobilière"
+    title="Votre nouveau logement en 48h chrono"
+    subtitle="Appartements, maisons et locaux commerciaux disponibles immédiatement. Candidature dématérialisée, réponse rapide garantie."
+    breadcrumb={[{ label: 'Louer', href: '/louer' }]}
+    image="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80"
+  />
+
+  <!-- Types -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Notre offre locative</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">415+ biens disponibles à la location</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {typesLocation.map((t, i) => (
+          <div id={t.id} class={`card-base fade-up delay-${i + 1}`}>
+            <img src={t.image} alt={t.title} class="w-full object-cover" style="height: 200px;" loading="lazy" />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-gray-900">{t.title}</h3>
+                <span class="badge badge-cyan">{t.count}</span>
+              </div>
+              <p class="text-sm text-gray-500 leading-relaxed mb-4">{t.desc}</p>
+              <a href="/contact" class="btn-secondary text-sm w-full justify-center">Voir les annonces</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Processus candidature -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Comment ça marche</span>
+        <h2 class="text-3xl font-bold mt-1 mb-2" style="color: #0a0f1e;">Candidater en <span class="gradient-text">4 étapes</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {processLocation.map((p, i) => (
+          <div class={`fade-up delay-${i + 1} text-center`}>
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-extrabold" style="background: linear-gradient(135deg, #00e5ff, #0066ff); color: #0a0f1e;">{p.step}</div>
+            <h3 class="font-bold text-gray-900 mb-1">{p.title}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pièces à fournir -->
+  <section class="section-py bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 fade-up">
+      <h2 class="text-2xl font-bold mb-6" style="color: #0a0f1e;">Documents requis pour votre dossier</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {[
+          { label: "Pièce d'identité", detail: "CNI, passeport ou titre de séjour valide" },
+          { label: "3 derniers bulletins de salaire", detail: "Ou 2 bilans si TNS / dirigeant" },
+          { label: "Contrat de travail", detail: "CDI, CDD, intérim ou justificatif d'activité" },
+          { label: "2 derniers avis d'imposition", detail: "Obligatoire pour tous les candidats" },
+          { label: "3 dernières quittances", detail: "Ou attestation propriétaire précédent bailleur" },
+          { label: "RIB", detail: "Pour la mise en place du prélèvement loyer" },
+        ].map(doc => (
+          <div class="flex items-start gap-3 p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-0.5 flex-shrink-0">
+              <circle cx="12" cy="12" r="10" fill="rgba(0,102,255,0.1)"/>
+              <path d="M9 12l2 2 4-4" stroke="#0066ff" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div class="text-sm font-semibold text-gray-900">{doc.label}</div>
+              <div class="text-xs text-gray-400">{doc.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Un bien vous intéresse ? Contactez-nous"
+    subtitle="Nos agents répondent sous 2h du lundi au samedi. Dépôt de candidature entièrement dématérialisé."
+    cta={{ label: "Déposer ma candidature", href: "/contact" }}
+    ctaSecondary={{ label: "04 67 00 00 00", href: "tel:0467000000" }}
+  />
+</BaseLayout>

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Nexus Immobilier Sète",
+  "telephone": "+33467740000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8 Quai de la Marine",
+    "addressLocality": "Sète",
+    "postalCode": "34200",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 43.4047, "longitude": 3.6977 },
+  "url": "https://nexus-immobilier.fr/sete",
+  "areaServed": "Sète"
+};
+
+const biens = [
+  { type: 'Appartement T3 vue mer', quartier: 'Corniche', prix: '380 000 €', surface: '78 m²', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80' },
+  { type: 'Maison de ville T4', quartier: 'Centre Sète', prix: '295 000 €', surface: '110 m²', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80' },
+  { type: 'Studio balnéaire', quartier: 'Plagette', prix: '128 000 €', surface: '25 m²', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80' },
+];
+---
+
+<BaseLayout
+  title="Agence immobilière Sète — Biens balnéaires & résidences"
+  description="Nexus Immobilier Sète : résidences principales, secondaires et investissement balnéaire sur l'île singulière. 180+ biens. Estimation gratuite. 04 67 74 00 00."
+  schema={schema}
+>
+  <PageHero
+    label="Sète · 34200"
+    title="Agence immobilière Sète — L'île singulière de la Méditerranée"
+    subtitle="Résidences balnéaires, maisons de ville, appartements vue mer. 180+ biens disponibles sur l'île de Sète et ses environs."
+    breadcrumb={[{ label: 'Sète', href: '/sete' }]}
+    image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80"
+  />
+
+  <!-- Marché Sète -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-14">
+        <div class="fade-up">
+          <span class="section-label">L'île singulière</span>
+          <h2 class="text-3xl font-bold mt-1 mb-5" style="color: #0a0f1e;">Sète, l'<span class="gradient-text">investissement balnéaire malin</span></h2>
+          <div class="space-y-4 text-gray-600" style="line-height: 1.8;">
+            <p>Surnommée l'île singulière, Sète est la seule ville française construite sur un cordon littoral entre mer et étang. Ce cadre géographique unique, la richesse de sa vie culturelle (festival de la toile en mer, musée Paul Valéry) et sa gastronomie en font l'une des destinations immobilières les plus prisées du Languedoc.</p>
+            <p>Le marché sétois affiche des prix moyens de 2 950 €/m² pour les appartements — significativement en dessous de Montpellier mais avec un potentiel de valorisation important grâce au développement touristique et aux projets de réhabilitation du centre-ville.</p>
+            <p>Notre agence Sète, ouverte en 2018 sur le Quai de la Marine, est spécialisée dans les transactions balnéaires et les résidences secondaires. Laure Vidal et Thomas Girard y accompagnent acheteurs locaux, Parisiens et investisseurs étrangers.</p>
+          </div>
+        </div>
+        <div class="fade-up delay-2 grid grid-cols-2 gap-4 content-start">
+          {[
+            { label: 'Prix moyen app.', value: '2 950 €/m²' },
+            { label: 'Vue mer (+)', value: '+35%' },
+            { label: 'Biens disponibles', value: '180+' },
+            { label: 'Saisonnalité', value: '3 mois HS' },
+            { label: 'Rendement saisonnier', value: '8–15%' },
+            { label: 'TER Montpellier', value: '20 min' },
+          ].map(s => (
+            <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+              <div class="text-xl font-extrabold gradient-text">{s.value}</div>
+              <div class="text-xs text-gray-500 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biens -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 fade-up">
+        <span class="section-label">Nos annonces</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Sélection balnéaire</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {biens.map((b, i) => (
+          <div class={`card-base fade-up delay-${i + 1}`}>
+            <img src={b.image} alt={b.type} class="w-full object-cover" style="height: 200px;" loading="lazy" />
+            <div class="p-5">
+              <div class="flex items-start justify-between mb-2">
+                <div>
+                  <h3 class="font-bold text-gray-900">{b.type}</h3>
+                  <p class="text-sm text-gray-500">{b.quartier} · {b.surface}</p>
+                </div>
+                <span class="text-lg font-extrabold whitespace-nowrap" style="color: #0066ff;">{b.prix}</span>
+              </div>
+              <a href="/contact" class="btn-primary w-full justify-center text-sm mt-3">Demander une visite</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Votre bien balnéaire à Sète"
+    subtitle="Laure et Thomas vous accueillent au Quai de la Marine ou vous recontactent dans la journée."
+    cta={{ label: "Contacter l'agence Sète", href: "/contact" }}
+    ctaSecondary={{ label: "04 67 74 00 00", href: "tel:0467740000" }}
+  />
+</BaseLayout>

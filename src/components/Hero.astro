@@ -1,0 +1,116 @@
+---
+// Hero split 60/40 — Nexus Immobilier
+---
+
+<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 w-full py-12">
+    <div class="grid lg:grid-cols-5 gap-10 items-center">
+
+      <!-- LEFT 60% (3/5) — fond blanc -->
+      <div class="lg:col-span-3">
+        <!-- Label -->
+        <div class="fade-up mb-5">
+          <span class="section-label">Agence immobilière · Montpellier · Nîmes · Sète</span>
+        </div>
+
+        <!-- H1 -->
+        <h1 class="fade-up delay-1 text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-tight mb-5" style="color: #0a0f1e;">
+          Votre projet immobilier<br />
+          entre les mains <span class="gradient-text">d'experts</span>
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="fade-up delay-2 text-lg text-gray-500 leading-relaxed mb-8 max-w-lg" style="line-height: 1.7;">
+          15 ans d'expertise locale, 3 agences dans l'Hérault et le Gard. Nous accompagnons acheteurs, vendeurs et investisseurs avec rigueur et proximité.
+        </p>
+
+        <!-- Formulaire recherche rapide -->
+        <div class="fade-up delay-3 bg-white rounded-xl border border-gray-200 shadow-md p-4 mb-8 max-w-xl">
+          <div class="grid sm:grid-cols-3 gap-3">
+            <select class="form-input text-sm" style="padding: 0.6875rem 0.875rem;">
+              <option value="">Acheter</option>
+              <option value="vendre">Vendre</option>
+              <option value="louer">Louer</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Montpellier, Nîmes, Sète…"
+              class="form-input text-sm"
+              style="padding: 0.6875rem 0.875rem;"
+            />
+            <input
+              type="text"
+              placeholder="Budget max (€)"
+              class="form-input text-sm"
+              style="padding: 0.6875rem 0.875rem;"
+            />
+          </div>
+          <div class="mt-3">
+            <button type="button" class="btn-primary w-full justify-center text-sm py-3">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Rechercher des biens
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 badges confiance -->
+        <div class="fade-up delay-4 flex flex-wrap items-center gap-4">
+          {[
+            { value: '1 200+', label: 'biens vendus' },
+            { value: '15 ans', label: "d'expertise" },
+            { value: '4.9★', label: 'avis Google' },
+          ].map(badge => (
+            <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3.5 py-2">
+              <span class="text-base font-extrabold" style="color: #0066ff;">{badge.value}</span>
+              <span class="text-xs text-gray-500 font-medium">{badge.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT 40% (2/5) — image -->
+      <div class="lg:col-span-2 relative fade-up delay-2">
+        <!-- Image principale -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="height: 560px;">
+          <img
+            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
+            alt="Appartement moderne à Montpellier — Nexus Immobilier"
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- Subtle overlay navy bas -->
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,15,30,0.3) 0%, transparent 50%);"></div>
+        </div>
+
+        <!-- Card flottante estimation -->
+        <div
+          class="absolute -left-6 bottom-10 bg-white rounded-2xl shadow-2xl p-5 max-w-[220px]"
+          style="animation: heroFloat 3.5s ease-in-out infinite;"
+        >
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(0,102,255,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold" style="color: #0a0f1e;">Estimation offerte</div>
+              <div class="text-xs text-gray-400">Votre bien estimé en 48h</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 mb-3">Gratuit et sans engagement.</p>
+          <a href="/estimation" class="btn-secondary w-full justify-center text-xs py-2 px-3">
+            Démarrer →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+</style>

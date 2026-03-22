@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const avantages = [
+  { icon: '📸', title: 'Photos & visite virtuelle', desc: 'Reportage photo professionnel et visite 3D immersive inclus dans nos honoraires.' },
+  { icon: '🌐', title: 'Diffusion maximale', desc: 'SeLoger, Leboncoin, Logic-Immo, PAP, notre site et réseau de 400+ agences partenaires.' },
+  { icon: '🎯', title: 'Ciblage acheteurs', desc: "Matching intelligent avec notre base de 1 800 acquéreurs actifs à la recherche d'un bien comme le vôtre." },
+  { icon: '💬', title: 'Négociation experte', desc: 'Nos agents négocient avec méthode pour défendre votre prix tout en gérant les objections acheteurs.' },
+  { icon: '📋', title: 'Gestion administrative', desc: 'DPE, diagnostics, promesse, acte notarié… nous coordonnons chaque document à votre place.' },
+  { icon: '⚡', title: 'Délai de vente moyen', desc: 'Nos biens en mandat exclusif se vendent en 45 jours en moyenne contre 110 jours pour le marché.' },
+];
+
+const mandats = [
+  {
+    id: 'mandat-simple',
+    type: 'Mandat simple',
+    ideal: 'Vous souhaitez garder la possibilité de vendre par vous-même.',
+    features: ['Diffusion multi-portails', 'Photos professionnelles', 'Accompagnement agence', 'Durée : 3 mois renouvelable'],
+    honoraires: '4% TTC',
+    badge: 'Flexible',
+  },
+  {
+    id: 'mandat-exclusif',
+    type: 'Mandat exclusif',
+    ideal: 'Vous voulez vendre vite et au meilleur prix, sans vous disperser.',
+    features: ['Tout le mandat simple +', 'Visite virtuelle 3D', 'Agent dédié', 'Accès base acheteurs exclusifs', 'Garantie délai 90 jours'],
+    honoraires: '3,5% TTC',
+    badge: '⭐ Recommandé',
+    highlight: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Vendre votre bien immobilier — Estimation & Mandat"
+  description="Vendez votre appartement ou maison avec Nexus Immobilier à Montpellier, Nîmes, Sète. Photos pro, diffusion maximale, honoraires 3,5% TTC. Estimation gratuite en 48h."
+>
+  <PageHero
+    label="Vendre votre bien"
+    title="Vendez vite et au meilleur prix"
+    subtitle="Photos professionnelles, diffusion maximale et 1 800 acheteurs actifs dans notre base. Délai de vente moyen en mandat exclusif : 45 jours."
+    breadcrumb={[{ label: 'Vendre', href: '/vendre' }]}
+    image="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1400&q=80"
+  />
+
+  <!-- Nos avantages -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Pourquoi Nexus</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Ce qui fait notre <span class="gradient-text">différence</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        {avantages.map((a, i) => (
+          <div class={`fade-up delay-${(i % 3) + 1} flex gap-4 p-5 rounded-xl border border-gray-100 bg-white shadow-sm`}>
+            <span class="text-3xl flex-shrink-0">{a.icon}</span>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">{a.title}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{a.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mandats -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Nos formules</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Choisissez votre mandat</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {mandats.map((m, i) => (
+          <div
+            id={m.id}
+            class={`fade-up delay-${i + 1} rounded-2xl p-7 border-2 ${m.highlight ? 'border-blue-500' : 'border-gray-200'} bg-white relative`}
+          >
+            {m.highlight && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class="badge badge-blue text-xs px-3 py-1">{m.badge}</span>
+              </div>
+            )}
+            <h3 class="text-xl font-bold mb-1" style="color: #0a0f1e;">{m.type}</h3>
+            <p class="text-sm text-gray-400 mb-4">{m.ideal}</p>
+            <ul class="space-y-2 mb-5">
+              {m.features.map(f => (
+                <li class="flex items-center gap-2 text-sm text-gray-700">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="rgba(0,102,255,0.1)"/>
+                    <path d="M9 12l2 2 4-4" stroke="#0066ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div class="text-2xl font-extrabold mb-4 gradient-text">{m.honoraires}</div>
+            <a href="/contact" class={m.highlight ? 'btn-primary w-full justify-center' : 'btn-secondary w-full justify-center'}>
+              Choisir ce mandat
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Première étape : votre estimation gratuite"
+    subtitle="Sans visite imposée, sans engagement de vente. En 48h, vous savez exactement ce que vaut votre bien sur le marché actuel."
+    cta={{ label: "Obtenir mon estimation", href: "/estimation" }}
+  />
+</BaseLayout>

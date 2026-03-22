@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const prestations = [
+  { icon: '🔍', title: 'Recherche de locataire', desc: "Diffusion, visites, sélection rigoureuse des candidats avec analyse solvabilité." },
+  { icon: '📋', title: 'Rédaction du bail', desc: "Bail conforme Alur, inventaire détaillé, état des lieux contradictoire." },
+  { icon: '💰', title: 'Encaissement des loyers', desc: "Virements automatiques à date fixe avec envoi des quittances dématérialisées." },
+  { icon: '🛠️', title: 'Gestion des travaux', desc: "Devis, suivi de chantier et coordination avec artisans partenaires agréés." },
+  { icon: '⚖️', title: 'Suivi contentieux', desc: "Gestion des impayés, relances, procédures avec avocats partenaires si nécessaire." },
+  { icon: '📊', title: 'Reporting propriétaire', desc: "Compte rendu mensuel détaillé : loyers, charges, travaux, fiscalité." },
+  { icon: '🏦', title: 'Assurance GLI', desc: "Garantie Loyers Impayés disponible, couvrant jusqu'à 36 mois de loyers." },
+  { icon: '📄', title: 'Déclaration fiscale', desc: "Accompagnement pour la déclaration revenus fonciers ou BIC LMNP." },
+];
+---
+
+<BaseLayout
+  title="Gestion locative Montpellier, Nîmes, Sète — Nexus Immobilier"
+  description="Confiez la gestion de votre bien immobilier à Nexus Immobilier. Encaissement loyers, gestion travaux, GLI, reporting mensuel. Honoraires 7% HT. Devis gratuit."
+>
+  <PageHero
+    label="Gestion locative"
+    title="Percevez vos loyers sans contrainte"
+    subtitle="Nous gérons intégralement votre patrimoine locatif. Vous recevez vos revenus à date fixe, sans avoir à intervenir."
+    breadcrumb={[{ label: 'Gestion locative', href: '/gestion-locative' }]}
+    image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80"
+  />
+
+  <!-- Chiffres clés -->
+  <section style="background: linear-gradient(135deg, #00e5ff, #0066ff);" class="py-12">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-0">
+        {[
+          { num: '320', suf: '+', label: 'Biens gérés' },
+          { num: '0', suf: '%', label: 'Vacance moyenne' },
+          { num: '7', suf: '%', label: 'Honoraires HT' },
+          { num: '98', suf: '%', label: 'Satisfaction' },
+        ].map((s, i) => (
+          <div class={`py-8 px-6 text-center ${i < 3 ? 'border-r border-white/30' : ''}`}>
+            <div class="text-4xl font-extrabold count-up" style="color: #0a0f1e;" data-target={s.num} data-suffix={s.suf}>0</div>
+            <div class="text-sm font-semibold mt-1" style="color: rgba(10,15,30,0.7);">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Prestations -->
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 fade-up">
+        <span class="section-label">Ce qui est inclus</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Une gestion <span class="gradient-text">360° sans surprise</span></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {prestations.map((p, i) => (
+          <div class={`fade-up delay-${(i % 4) + 1} p-5 rounded-xl border border-gray-100 bg-white shadow-sm`}>
+            <span class="text-3xl mb-3 block">{p.icon}</span>
+            <h3 class="font-bold text-gray-900 mb-1 text-sm">{p.title}</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tarif -->
+  <section style="background: #f8fafc;" class="section-py">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 fade-up">
+        <span class="section-label">Tarification</span>
+        <h2 class="text-3xl font-bold mt-1" style="color: #0a0f1e;">Une tarification claire et compétitive</h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-4 fade-up">
+        {[
+          { label: 'Honoraires de gestion', value: '7% HT', note: 'des loyers encaissés' },
+          { label: 'Mise en location', value: '1 mois', note: 'de loyer TTC' },
+          { label: "État des lieux d'entrée", value: '150 €', note: 'TTC (sortie offerte)' },
+        ].map(t => (
+          <div class="text-center p-5 rounded-xl bg-white border border-gray-200 shadow-sm">
+            <div class="text-2xl font-extrabold gradient-text mb-1">{t.value}</div>
+            <div class="text-sm font-semibold text-gray-900">{t.label}</div>
+            <div class="text-xs text-gray-400 mt-1">{t.note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Confiez-nous la gestion de votre bien"
+    subtitle="Premier mois de gestion offert. Devis gratuit sous 24h après étude de votre dossier propriétaire."
+    cta={{ label: "Demander un devis gratuit", href: "/contact" }}
+  />
+</BaseLayout>

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<BaseLayout
+  title="Contact — Nexus Immobilier Montpellier, Nîmes, Sète"
+  description="Contactez Nexus Immobilier : formulaire en ligne, téléphone 04 67 00 00 00 ou email. 3 agences à Montpellier, Nîmes et Sète. Réponse garantie sous 2h."
+>
+  <PageHero
+    label="Nous contacter"
+    title="Parlons de votre projet immobilier"
+    subtitle="Nos agents répondent sous 2h du lundi au samedi. Choisissez votre canal préféré."
+    breadcrumb={[{ label: 'Contact', href: '/contact' }]}
+    image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&q=80"
+  />
+
+  <section class="section-py bg-white">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-14">
+
+        <!-- Formulaire -->
+        <div class="fade-up">
+          <h2 class="text-2xl font-bold mb-2" style="color: #0a0f1e;">Envoyez-nous un message</h2>
+          <p class="text-gray-400 mb-6 text-sm">Réponse garantie sous 2h · Du lundi au samedi</p>
+
+          <form onsubmit="return false;" class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-gray-600 block mb-1.5">Prénom *</label>
+                <input type="text" class="form-input" placeholder="Marie" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-gray-600 block mb-1.5">Nom *</label>
+                <input type="text" class="form-input" placeholder="Dupont" />
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-gray-600 block mb-1.5">Email *</label>
+                <input type="email" class="form-input" placeholder="marie@email.fr" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-gray-600 block mb-1.5">Téléphone *</label>
+                <input type="tel" class="form-input" placeholder="06 XX XX XX XX" />
+              </div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-600 block mb-1.5">Votre projet *</label>
+              <select class="form-input">
+                <option value="">Sélectionnez votre projet</option>
+                <option>Acheter un bien</option>
+                <option>Vendre mon bien</option>
+                <option>Louer un bien</option>
+                <option>Confier ma gestion locative</option>
+                <option>Estimation gratuite</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-600 block mb-1.5">Agence souhaitée</label>
+              <select class="form-input">
+                <option>Montpellier</option>
+                <option>Nîmes</option>
+                <option>Sète</option>
+                <option>Peu importe</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-gray-600 block mb-1.5">Votre message</label>
+              <textarea class="form-input" rows="4" placeholder="Décrivez votre projet en quelques mots…"></textarea>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <input type="checkbox" id="rgpd" class="mt-1 flex-shrink-0" />
+              <label for="rgpd" class="text-xs text-gray-400 leading-relaxed">
+                J'accepte que mes données soient traitées par Nexus Immobilier dans le cadre de ma demande. Conformément au RGPD, je dispose d'un droit d'accès et de suppression.
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center py-3.5">
+              Envoyer ma demande
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Infos & Agences -->
+        <div class="fade-up delay-2 space-y-6">
+          <div>
+            <h2 class="text-2xl font-bold mb-5" style="color: #0a0f1e;">Nos agences</h2>
+            <div class="space-y-5">
+              {[
+                {
+                  city: 'Montpellier',
+                  addr: '12 Rue de la Loge, 34000 Montpellier',
+                  tel: '04 67 00 00 00',
+                  email: 'montpellier@nexus-immobilier.fr',
+                  hours: 'Lun–Sam 9h–19h',
+                },
+                {
+                  city: 'Nîmes',
+                  addr: '5 Bd Gambetta, 30000 Nîmes',
+                  tel: '04 66 00 00 00',
+                  email: 'nimes@nexus-immobilier.fr',
+                  hours: 'Lun–Sam 9h–18h30',
+                },
+                {
+                  city: 'Sète',
+                  addr: '8 Quai de la Marine, 34200 Sète',
+                  tel: '04 67 74 00 00',
+                  email: 'sete@nexus-immobilier.fr',
+                  hours: 'Lun–Ven 9h–18h · Sam 9h–17h',
+                },
+              ].map(a => (
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <div class="flex items-center gap-2 mb-3">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0066ff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span class="font-bold text-gray-900">{a.city}</span>
+                  </div>
+                  <div class="space-y-1 text-sm text-gray-600">
+                    <p>{a.addr}</p>
+                    <a href={`tel:${a.tel.replace(/\s/g, '')}`} class="flex items-center gap-1.5 hover:text-blue-600">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81"/></svg>
+                      {a.tel}
+                    </a>
+                    <a href={`mailto:${a.email}`} class="flex items-center gap-1.5 hover:text-blue-600">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      {a.email}
+                    </a>
+                    <p class="text-xs text-gray-400 mt-1">{a.hours}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Urgence -->
+          <div class="p-5 rounded-xl border-2" style="border-color: #00e5ff; background: rgba(0,229,255,0.04);">
+            <h3 class="font-bold mb-1" style="color: #0a0f1e;">Besoin urgent ?</h3>
+            <p class="text-sm text-gray-500 mb-3">Nos agents sont joignables par téléphone du lundi au samedi.</p>
+            <a href="tel:0467000000" class="btn-primary-pill text-sm">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81"/></svg>
+              04 67 00 00 00
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+const testimonials = [
+  {
+    quote: "Sarah et son équipe ont vendu notre appartement en seulement 12 jours, au-dessus du prix demandé. Un suivi irréprochable, des conseils précieux et une disponibilité à toute heure. Je recommande Nexus sans la moindre hésitation.",
+    author: 'Isabelle Marchand',
+    context: 'Vente — Appartement T3, Montpellier Écusson',
+    avatar: 'https://picsum.photos/seed/isabelle/80/80',
+    stars: 5,
+  },
+  {
+    quote: "Après 6 mois à chercher seul, j'ai confié mon projet à Marc. En 3 semaines il m'avait trouvé une maison à Nîmes correspondant exactement à mes critères. Négociation efficace, -12 000€ sur le prix affiché.",
+    author: 'Julien Ferreira',
+    context: 'Achat — Maison T5 avec jardin, Nîmes',
+    avatar: 'https://picsum.photos/seed/julien/80/80',
+    stars: 5,
+  },
+  {
+    quote: "Laure gère notre patrimoine locatif de 4 appartements depuis 3 ans. Zéro vacance locative, loyers versés à date fixe, problèmes résolus sans qu'on ait à intervenir. La gestion locative Nexus, c'est la tranquillité d'esprit.",
+    author: 'Carole & Michel Durand',
+    context: 'Gestion locative — 4 biens, Sète & Montpellier',
+    avatar: 'https://picsum.photos/seed/carole/80/80',
+    stars: 5,
+  },
+];
+---
+
+<section style="background: #f8fafc;" class="section-py">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6">
+
+    <!-- Header -->
+    <div class="text-center mb-12 fade-up">
+      <span class="section-label">Ce qu'ils disent</span>
+      <h2 class="text-3xl sm:text-4xl font-bold mt-1 mb-3" style="color: #0a0f1e;">
+        Ils nous ont fait <span class="gradient-text">confiance</span>
+      </h2>
+      <p class="text-gray-500 max-w-lg mx-auto">
+        Plus de 1 200 transactions réussies. Voici quelques témoignages de nos clients satisfaits.
+      </p>
+    </div>
+
+    <!-- CSS-only slider -->
+    <div class="fade-up">
+
+      <input type="radio" name="testimonial" id="t1" class="slider-input" checked />
+      <input type="radio" name="testimonial" id="t2" class="slider-input" />
+      <input type="radio" name="testimonial" id="t3" class="slider-input" />
+
+      <div class="slider-track overflow-hidden rounded-2xl max-w-3xl mx-auto">
+        <div class="testimonial-slides">
+          {testimonials.map(t => (
+            <div class="flex-shrink-0 w-full bg-white rounded-2xl p-8 sm:p-12 shadow-lg border border-gray-100">
+              <!-- Stars -->
+              <div class="flex gap-1 mb-6">
+                {Array.from({ length: t.stars }).map(() => (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#0066ff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                ))}
+              </div>
+
+              <!-- Quote -->
+              <blockquote class="text-lg text-gray-700 leading-relaxed italic mb-8">
+                "{t.quote}"
+              </blockquote>
+
+              <!-- Author -->
+              <div class="flex items-center gap-4">
+                <img src={t.avatar} alt={t.author} class="w-14 h-14 rounded-full object-cover border-2" style="border-color: #00e5ff;" loading="lazy" />
+                <div>
+                  <div class="font-bold text-gray-900">{t.author}</div>
+                  <div class="text-sm text-gray-400">{t.context}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="slider-dots flex justify-center gap-3 mt-8">
+        <label for="t1" class="dot-label"></label>
+        <label for="t2" class="dot-label"></label>
+        <label for="t3" class="dot-label"></label>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 fade-up">
+      <a href="/notre-agence#avis" class="btn-secondary">
+        Voir tous les avis →
+      </a>
+    </div>
+  </div>
+</section>
