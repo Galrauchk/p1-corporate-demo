@@ -1,4 +1,6 @@
 ---
+import LegalLinks from './LegalLinks.astro';
+
 const year = new Date().getFullYear();
 ---
 
@@ -116,6 +118,7 @@ const year = new Date().getFullYear();
           <a href={item.href} class="text-xs hover:text-gray-300 transition-colors" style="color: #475569;">{item.label}</a>
         ))}
       </div>
+      <LegalLinks includeMentions={false} />
     </div>
   </div>
 </footer>
