@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import LegalLinks from '../components/LegalLinks.astro';
 ---
 
 <BaseLayout
@@ -67,6 +68,7 @@ import PageHero from '../components/PageHero.astro';
             Le présent site est soumis au droit français. Tout litige sera de la compétence exclusive des tribunaux du ressort de la Cour d'appel de Montpellier.
           </p>
         </div>
+        <LegalLinks includeMentions={false} />
       </div>
     </div>
   </section>
